@@ -1,15 +1,30 @@
+import React from 'react';
+import { Container } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
 
-import 'leaflet/dist/leaflet.css';
+// Layout
+import Layout from "./layout/Layout";
 
-
-import { Stack } from 'react-bootstrap';
-import Map from './components/Map';
-function App() {
+// pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import Map from "./pages/Map";
+import Records from "./pages/Records";
+const App = () => {
   return (
-    <div className="App">
-      <Map />
-    </div>
+    <Layout>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/about" element={<About />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/records" element={<Records />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Container>
+    </Layout>
   );
-}
+};
 
 export default App;
