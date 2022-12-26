@@ -11,15 +11,17 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Map from "./pages/Map";
 import Records from "./pages/Records";
+import D3Playground from './pages/D3Playground';
 const App = () => {
   return (
     <Layout>
       <Container>
         <Routes>
-          <Route path="/" element={<Home />} exact />
+          <Route path="/" element={<Map />} exact />
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<Map />} />
           <Route path="/records" element={<Records />} />
+          <Route path="/d3playground" element={<D3Playground />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>

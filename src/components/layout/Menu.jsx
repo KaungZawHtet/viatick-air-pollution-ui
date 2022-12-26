@@ -25,6 +25,12 @@ const Menu = () => {
                 Records
               </Link>
             </li>
+
+            <li>
+              <Link to="/d3playground" className="nav-link px-2 link-secondary">
+                D3 Playground
+              </Link>
+            </li>
             <li>
               <Link to="/about" className="nav-link px-2 link-secondary">
                 About
