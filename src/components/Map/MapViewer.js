@@ -95,7 +95,7 @@ const MapViewer = () => {
     return (
         <MapContainer center={center} zoom={18} scrollWheelZoom={false}>
             <TileLayer {...tileLayer} />
-            <MyMarkers data={[]} />
+            {/* <MyMarkers data={[]} /> */}
             <CoordinateDisplay />
             <MakeTriangles />
 

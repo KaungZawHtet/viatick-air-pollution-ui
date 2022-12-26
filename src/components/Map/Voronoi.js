@@ -137,11 +137,17 @@ const MakeTriangles = () =>
 
     return (
         <>
-            <Polygon pathOptions={[
-                { color: 'purple' },
-                { color: 'red' },
-                { color: 'green' }
-            ]} positions={polygonPoints} />
+
+            {
+                polygonPoints.map(item => (
+                    <Polygon pathOptions={{ color: randomColor() }
+                    } positions={item} />
+
+                ))
+
+             }
+
+
 
         </>
     );
