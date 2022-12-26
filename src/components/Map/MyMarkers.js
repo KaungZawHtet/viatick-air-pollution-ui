@@ -26,6 +26,10 @@ const points = [
 ];
 
 
+
+
+
+
 const MyMarkers = ({ data }) => {
     return points.map(({ lat, lng, title }, index) => (
         <Marker
