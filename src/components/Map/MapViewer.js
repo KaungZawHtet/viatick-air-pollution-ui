@@ -3,7 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup,Polygon } from 'react-leaflet';
 import MyMarkers from './MyMarkers';
 import CoordinateDisplay from './CoordinateDisplay';
-
+import MakeTriangles from './Voronoi';
 const tileLayer = {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -97,9 +97,16 @@ const MapViewer = () => {
             <TileLayer {...tileLayer} />
             <MyMarkers data={[]} />
             <CoordinateDisplay />
-            <Polygon pathOptions={purpleOptions} positions={polygon} />
+            <MakeTriangles />
+
+
+            {/* <Polygon pathOptions={purpleOptions} positions={polygon} /> */}
         </MapContainer>
-    )
+    );
+
+
+
+
 }
 
 export default MapViewer;
