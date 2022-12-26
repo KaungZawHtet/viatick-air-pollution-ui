@@ -1,4 +1,6 @@
-import {   Marker, Popup } from 'react-leaflet';
+
+import { Marker, Popup } from 'react-leaflet';
+
 
 const points = [
     {
@@ -23,7 +25,8 @@ const points = [
     },
 ];
 
-const MyMarkers = () => {
+
+const MyMarkers = ({ data }) => {
     return points.map(({ lat, lng, title }, index) => (
         <Marker
             key={index}
@@ -34,10 +37,5 @@ const MyMarkers = () => {
     ));
 }
 
-function MapMarkers() {
-  return (
-      <MyMarkers/>
-  )
-}
 
-export default MapMarkers
+export default MyMarkers;
