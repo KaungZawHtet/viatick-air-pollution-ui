@@ -1,8 +1,8 @@
 
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import MyMarkers from './Map/MyMarkers';
-import CoordinateDisplay from './Map/CoordinateDisplay';
+import MyMarkers from './MyMarkers';
+import CoordinateDisplay from './CoordinateDisplay';
 
 const tileLayer = {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -14,7 +14,7 @@ const center = [52.22977, 21.01178];
 
 
 
-const Map = () => {
+const MapViewer = () => {
     return (
         <MapContainer center={center} zoom={18} scrollWheelZoom={false}>
             <TileLayer {...tileLayer} />
@@ -24,4 +24,4 @@ const Map = () => {
     )
 }
 
-export default Map;
+export default MapViewer;
