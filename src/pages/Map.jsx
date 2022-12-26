@@ -1,6 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import MapViewer from '../components/Map/MapViewer';
 import { Container } from 'react-bootstrap'
+=======
+
+import Meta from '../components/Meta'
+>>>>>>> master
 
 const Map = () => {
     // page content

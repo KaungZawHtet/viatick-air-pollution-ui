@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 const Records = () => {
     // page content
     const pageTitle = 'Records';
@@ -9,7 +8,6 @@ const Records = () => {
 
     return (
         <div>
-
 
         </div>
     )

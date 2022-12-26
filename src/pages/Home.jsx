@@ -9,7 +9,6 @@ const Home = () => {
 
   return (
     <div>
-
       <Header head={pageTitle} description={pageDescription} />
     </div>
   )
