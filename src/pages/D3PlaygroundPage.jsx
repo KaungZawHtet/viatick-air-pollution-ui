@@ -41,6 +41,9 @@ const D3PlaygroundPage = () => {
                 width: '600px',
                 height: '600px'
             }}>
+                <h3>D3 Playground to adapt the library</h3>
+
+
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     {pts.map((pt) => (
                         <circle cx={pt.x} cy={pt.y} r="0.5" fill={randomColor()} />

@@ -66,17 +66,14 @@ const RecordsPage = () => {
     return (
         <Container  >
             <Stack direction='vertical' gap={2}>
-                <div className='d-flex justify-content-center'>
+                <DataTable
+                    //title="PM 2.5 Detection by Sensors"
+                    columns={columns}
+                    data={pmlogs}
+                    pagination
 
-                    <DataTable
-                        //title="PM 2.5 Detection by Sensors"
-                        columns={columns}
-                        data={pmlogs}
 
-
-                    />
-
-                </div>
+                />
 
                 <Stack direction='horizontal' gap={2} className="col-md-5 mx-auto justify-content-center">
 
