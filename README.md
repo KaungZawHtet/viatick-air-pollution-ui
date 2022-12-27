@@ -30,4 +30,4 @@ For a ReactJS project, there is not much left to consider before setting up. Her
 ## Notable Modules
 
 1. Leaflet for Map
-2. D3 Delaunay for Voronoi rendering
+2. Delaunator (base of D3-Delaunay) for Voronoi rendering

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap'
+import { Container,Stack } from 'react-bootstrap'
 import Delaunator from 'delaunator';
 import randomColor from "randomcolor";
 
@@ -14,6 +14,9 @@ const D3PlaygroundPage = () => {
         { x: 43, y: 86 },
         { x: 12, y: 32 },
         { x: 65, y: 1 },
+        { x: 34, y: 54 },
+        { x: 11, y: 22 },
+        { x: 80, y: 80 },
     ]
 
     console.log(pts);
@@ -30,18 +33,25 @@ const D3PlaygroundPage = () => {
         ]);
     }
 
-    console.log(triangleCoords);
 
 
 
 
     return (
-        <Container className='d-flex justify-content-center'>
-            <div  style={{
-                width: '600px',
-                height: '600px'
-            }}>
-                <h3>D3 Playground to adapt the library</h3>
+
+
+        <Container  >
+            <Stack direction='vertical' gap={2}>
+
+                <h4 className='d-flex justify-content-center'> Voronoi Diagram by using Delaunator (base of D3-Delaunay) </h4>
+
+
+                <div className='d-flex justify-content-center'>
+                    <div className="border" style={{
+                        width: '600px',
+                        height: '700px'
+                    }}>
+
 
 
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +70,25 @@ const D3PlaygroundPage = () => {
                                 }}
                             />
                         ))}
-                </svg>
+                        </svg>
+                    </div>
 
-            </div>
+                </div>
+
+
+
+
+
+
+            </Stack>
+
+
+
         </Container>
+
+
+
+
     )
 }
 

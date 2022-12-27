@@ -78,7 +78,52 @@ const Sensors = [
         "latitude": 52.229211,
         "longitude": 21.013407,
         "pm2P5": getPM2P5()
-    }
+    },
+
+    {
+        "sensorId": "sensorM",
+        "latitude": 52.230063,
+        "longitude": 21.010211,
+        "pm2P5": getPM2P5()
+    },
+
+    {
+        "sensorId": "sensorN",
+        "latitude": 52.229159,
+        "longitude": 21.011414,
+        "pm2P5": getPM2P5()
+    },
+
+    {
+        "sensorId": "sensorO",
+        "latitude": 52.229647,
+        "longitude": 21.012889,
+        "pm2P5": getPM2P5()
+    },
+
+    {
+        "sensorId": "sensorP",
+        "latitude": 52.229995,
+        "longitude": 21.013182,
+        "pm2P5": getPM2P5()
+    },
+
+    {
+        "sensorId": "sensorQ",
+        "latitude": 52.22945,
+        "longitude": 21.011165,
+        "pm2P5": getPM2P5()
+    },
+
+    {
+        "sensorId": "sensorR",
+        "latitude": 52.229647,
+        "longitude": 21.012889,
+        "pm2P5": getPM2P5()
+    },
+
+
+
 
 ]
 
