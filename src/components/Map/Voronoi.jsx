@@ -1,5 +1,5 @@
 import Delaunator from 'delaunator';
-import { Polygon } from 'react-leaflet';
+import { Polygon, Tooltip } from 'react-leaflet';
 let sensors = [
 
     {
@@ -120,7 +120,10 @@ const MakeTriangles = () => {
             {
                 triangleCoords.map((item,index) => (
                     <Polygon key={index} pathOptions={{ color: getColor(item.pmTwoPointFive) }
-                    } positions={item.coordinate} />
+                    } positions={item.coordinate} >
+
+                        <Tooltip sticky>PM 2.5(µg/m3) {getCentralPMTwoPointFive(item.pmTwoPointFive)}</Tooltip>
+                    </Polygon>
 
                 ))
 
@@ -134,9 +137,15 @@ const MakeTriangles = () => {
 
 }
 
+function getCentralPMTwoPointFive(pmTwoPointFive)
+{
+    return ((pmTwoPointFive[0] + pmTwoPointFive[1] + pmTwoPointFive[2]) / 3).toFixed(2);
+
+}
+
 function getColor(pmTwoPointFive)
 {
-    const centralPoint = (pmTwoPointFive[0] + pmTwoPointFive[1] + pmTwoPointFive[2]) / 3;
+    const centralPoint = getCentralPMTwoPointFive(pmTwoPointFive);
 
     if (centralPoint <= 12) {
 
@@ -175,13 +184,7 @@ function getPMTwoPointFive() {
         default: //green
             return Math.floor(Math.random() * 13); //below 13
 
-
-
     }
-
-
-    return Math.floor(Math.random() * 71);
-
 
 
 }
