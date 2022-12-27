@@ -14,6 +14,8 @@ function SaveButton({data}) {
 
 const onSave = () => {
 
+  let timestamp = Date.now();
+
 
     Sensors.map( async (item) => {
 
@@ -22,7 +24,8 @@ const onSave = () => {
             "sensorId": item.sensorId,
             "latitude": item.latitude,
             "longitude": item.longitude,
-            "pm2P5": 32.32,
+          "pm2P5": 32.32,
+          "timestamp": timestamp
 
         };
 

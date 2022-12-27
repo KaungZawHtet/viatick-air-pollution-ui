@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
         paddingBottom : '50px',
       }}>{children}</main>
 
-      <Footer/>
+
 
     </>
   );
