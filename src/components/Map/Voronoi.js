@@ -1,5 +1,4 @@
 import Delaunator from 'delaunator';
-import randomColor from "randomcolor";
 import { Polygon } from 'react-leaflet';
 let sensors = [
 
@@ -7,7 +6,7 @@ let sensors = [
         "sensorId": "sensorA",
         "latitude": 52.230425,
         "longitude": 21.010768,
-        "pm2.5": getPM25()
+
     },
     {
         "sensorId": "sensorB",
@@ -72,42 +71,15 @@ let sensors = [
 
 ]
 
-const pts = [
-    { x: 1, y: 43 },
-    { x: 13, y: 2 },
-    { x: 11, y: 66 },
-    { x: 6, y: 12 },
-    { x: 43, y: 86 },
-    { x: 12, y: 32 },
-    { x: 65, y: 1 },
-]
 
-function MakePoint() {
-    let points = sensors.map(item => {
-
-        let point = {
-            x: item.latitude,
-            y: item.longitude
-        }
-        return point;
-
-    });
-
-    //console.log(pts);
-
-    //console.log(points);
-
-    return points;
-
-}
 
 function MakeTrianglePoints() {
-    const xyPoints = MakePoint();
+
 
     //const delaunay = Delaunator.from(xyPoints.map((p) => [p.x, p.y]));
     const delaunay = Delaunator.from(sensors.map((sensor) => [sensor.longitude, sensor.latitude]));
     const triangleIndices = delaunay.triangles;
-    const triangleCoords = [];
+    let triangleCoords = [];
 
     for (let i = 0; i < triangleIndices.length; i += 3) {
 
@@ -115,23 +87,26 @@ function MakeTrianglePoints() {
         const sensor2 = sensors[triangleIndices[i + 1]];
         const sensor3 = sensors[triangleIndices[i + 2]];
 
-        triangleCoords.push([
-            { x: sensor1.latitude, y: sensor1.longitude },
-            { x: sensor2.latitude, y: sensor2.longitude },
-            { x: sensor3.latitude, y: sensor3.longitude },
-        ]);
+        let item = {
+
+            coordinate: [
+                [sensor1.latitude, sensor1.longitude],
+                [sensor2.latitude, sensor2.longitude],
+                [sensor3.latitude, sensor3.longitude]
+            ],
+            pmTwoPointFive: [getPMTwoPointFive(), getPMTwoPointFive(), getPMTwoPointFive()],
+        };
+
+        triangleCoords.push(item);
+
     }
 
-    /* triangleCoords.push([
-        xyPoints[triangleIndices[i]],
-        xyPoints[triangleIndices[i + 1]],
-        xyPoints[triangleIndices[i + 2]],
-    ]); */
+
 
     return triangleCoords;
 }
 
-//console.log(triangleCoords);
+
 
 
 
@@ -139,22 +114,13 @@ function MakeTrianglePoints() {
 const MakeTriangles = () => {
     let triangleCoords = MakeTrianglePoints();
 
-    const polygonPoints = triangleCoords.map(([a, b, c]) => (
-        [
-            [a.x, a.y],
-            [b.x, b.y],
-            [c.x, c.y]
-        ]
-    ))
-
-
     return (
         <>
 
             {
-                polygonPoints.map((item,index) => (
-                    <Polygon key={index} pathOptions={{ color: randomColor() }
-                    } positions={item} />
+                triangleCoords.map((item,index) => (
+                    <Polygon key={index} pathOptions={{ color: getColor(item.pmTwoPointFive) }
+                    } positions={item.coordinate} />
 
                 ))
 
@@ -168,33 +134,55 @@ const MakeTriangles = () => {
 
 }
 
-function getColor(item) {
+function getColor(pmTwoPointFive)
+{
+    const centralPoint = (pmTwoPointFive[0] + pmTwoPointFive[1] + pmTwoPointFive[2]) / 3;
 
-    /*
-        [
-            [a.x, a.y],
-            [b.x, b.y],
-            [c.x, c.y]
-        ]
+    if (centralPoint <= 12) {
 
-    */
+        return "green";
+
+    }
+    else if (centralPoint < 55 && centralPoint>12)
+    {
+        return "orange";
+
+        }
+
+    else {
+
+        return "red";
+
+    }
 
 }
 
-function getPM25() {
 
-    console.log("This is 32")
+function getPMTwoPointFive() {
 
-    return 32;
+    const stage = Math.floor(Math.random() * 4);
 
-    /*
-        [
-            [a.x, a.y],
-            [b.x, b.y],
-            [c.x, c.y]
-        ]
+    switch (stage) {
+        case 1: //orange
 
-    */
+            return Math.floor(Math.random() * 55) + 13; // 13-55
+
+        case 2: //red
+
+            return Math.floor(Math.random() * 70) + 55; // 55-70
+
+
+        default: //green
+            return Math.floor(Math.random() * 13); //below 13
+
+
+
+    }
+
+
+    return Math.floor(Math.random() * 71);
+
+
 
 }
 
