@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Map from "./pages/Map";
 import Records from "./pages/Records";
 import D3Playground from './pages/D3Playground';
+import PdfDisplay from './pages/PdfDisplay';
 const App = () => {
   return (
     <Layout>
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/records" element={<Records />} />
           <Route path="/d3playground" element={<D3Playground />} />
           <Route path='*' element={<NotFound />} />
+
+          <Route path="/pdfdisplay" element={<PdfDisplay />} />
         </Routes>
       </Container>
     </Layout>

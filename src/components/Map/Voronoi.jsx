@@ -1,75 +1,7 @@
 import Delaunator from 'delaunator';
 import { Polygon, Tooltip } from 'react-leaflet';
-let sensors = [
+let {Sensors} = require("../../api/pm2P5.js")
 
-    {
-        "sensorId": "sensorA",
-        "latitude": 52.230425,
-        "longitude": 21.010768,
-
-    },
-    {
-        "sensorId": "sensorB",
-        "latitude": 52.230517,
-        "longitude": 21.011353,
-    },
-    {
-        "sensorId": "sensorC",
-        "latitude": 52.230227,
-        "longitude": 21.011068,
-    },
-    {
-        "sensorId": "sensorD",
-        "latitude": 52.23027,
-        "longitude": 21.011513,
-    },
-    {
-        "sensorId": "sensorE",
-        "latitude": 52.230171,
-        "longitude": 21.01205,
-    },
-    {
-        "sensorId": "sensorF",
-        "latitude": 52.230454,
-        "longitude": 21.012704,
-    },
-    {
-        "sensorId": "sensorG",
-        "latitude": 52.229412,
-        "longitude": 21.010655,
-    },
-    {
-        "sensorId": "sensorF",
-        "latitude": 52.229902,
-        "longitude": 21.011556,
-    },
-    {
-        "sensorId": "sensorH",
-        "latitude": 52.229635,
-        "longitude": 21.012366,
-    },
-    {
-        "sensorId": "sensorI",
-        "latitude": 52.229379,
-        "longitude": 21.012624,
-    },
-    {
-        "sensorId": "sensorJ",
-        "latitude": 52.229448,
-        "longitude": 21.012372,
-    },
-    {
-        "sensorId": "sensorK",
-        "latitude": 52.229435,
-        "longitude": 21.013241,
-    },
-    {
-        "sensorId": "sensorL",
-        "latitude": 52.229211,
-        "longitude": 21.013407,
-    }
-
-]
 
 
 
@@ -77,15 +9,15 @@ function MakeTrianglePoints() {
 
 
     //const delaunay = Delaunator.from(xyPoints.map((p) => [p.x, p.y]));
-    const delaunay = Delaunator.from(sensors.map((sensor) => [sensor.longitude, sensor.latitude]));
+    const delaunay = Delaunator.from(Sensors.map((sensor) => [sensor.longitude, sensor.latitude]));
     const triangleIndices = delaunay.triangles;
     let triangleCoords = [];
 
     for (let i = 0; i < triangleIndices.length; i += 3) {
 
-        const sensor1 = sensors[triangleIndices[i]]; //{ x: 1, y: 43 },
-        const sensor2 = sensors[triangleIndices[i + 1]];
-        const sensor3 = sensors[triangleIndices[i + 2]];
+        const sensor1 = Sensors[triangleIndices[i]]; //{ x: 1, y: 43 },
+        const sensor2 = Sensors[triangleIndices[i + 1]];
+        const sensor3 = Sensors[triangleIndices[i + 2]];
 
         let item = {
 
@@ -94,7 +26,7 @@ function MakeTrianglePoints() {
                 [sensor2.latitude, sensor2.longitude],
                 [sensor3.latitude, sensor3.longitude]
             ],
-            pmTwoPointFive: [getPMTwoPointFive(), getPMTwoPointFive(), getPMTwoPointFive()],
+            pm2P5: [sensor3.pm2P5, sensor3.pm2P5, sensor3.pm2P5],
         };
 
         triangleCoords.push(item);
@@ -119,10 +51,10 @@ const MakeTriangles = () => {
 
             {
                 triangleCoords.map((item,index) => (
-                    <Polygon key={index} pathOptions={{ color: getColor(item.pmTwoPointFive) }
+                    <Polygon key={index} pathOptions={{ color: getColor(item.pm2P5) }
                     } positions={item.coordinate} >
 
-                        <Tooltip sticky>PM 2.5(µg/m3) {getCentralPMTwoPointFive(item.pmTwoPointFive)}</Tooltip>
+                        <Tooltip sticky>PM 2.5(µg/m3) {getCentralPM2P5(item.pm2P5)}</Tooltip>
                     </Polygon>
 
                 ))
@@ -137,15 +69,15 @@ const MakeTriangles = () => {
 
 }
 
-function getCentralPMTwoPointFive(pmTwoPointFive)
+function getCentralPM2P5(pm2P5)
 {
-    return ((pmTwoPointFive[0] + pmTwoPointFive[1] + pmTwoPointFive[2]) / 3).toFixed(2);
+    return ((pm2P5[0] + pm2P5[1] + pm2P5[2]) / 3).toFixed(2);
 
 }
 
-function getColor(pmTwoPointFive)
+function getColor(pm2P5)
 {
-    const centralPoint = getCentralPMTwoPointFive(pmTwoPointFive);
+    const centralPoint = getCentralPM2P5(pm2P5);
 
     if (centralPoint <= 12) {
 
@@ -166,28 +98,6 @@ function getColor(pmTwoPointFive)
 
 }
 
-
-function getPMTwoPointFive() {
-
-    const stage = Math.floor(Math.random() * 4);
-
-    switch (stage) {
-        case 1: //orange
-
-            return Math.floor(Math.random() * 55) + 13; // 13-55
-
-        case 2: //red
-
-            return Math.floor(Math.random() * 70) + 55; // 55-70
-
-
-        default: //green
-            return Math.floor(Math.random() * 13); //below 13
-
-    }
-
-
-}
 
 
 

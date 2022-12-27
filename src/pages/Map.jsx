@@ -1,17 +1,34 @@
 import React from 'react';
 import MapViewer from '../components/Map/MapViewer';
-import { Container } from 'react-bootstrap'
+import { Container,Stack ,Button} from 'react-bootstrap'
+import SaveButton from '../components/Map/SaveButton'
+import PdfButton from '../components/Map/PdfButton';
 
 const Map = () => {
-    // page content
-    const pageTitle = 'Map'
-    const pageDescription = 'This is Map Page'
+
+
 
     return (
-        <Container>
-            <div className='d-flex justify-content-center'>
-                <MapViewer/>
-            </div>
+        <Container >
+            <Stack direction='vertical' gap={2}>
+                <div className='d-flex justify-content-center'>
+
+                    <MapViewer />
+
+                </div>
+
+                <Stack direction='horizontal' gap={2} className="col-md-5 mx-auto justify-content-center">
+                    <SaveButton/>
+                    <PdfButton />
+                </Stack>
+
+
+
+
+            </Stack>
+
+
+
         </Container>
     )
 }
