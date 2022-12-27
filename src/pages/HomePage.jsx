@@ -2,10 +2,10 @@ import React from 'react';
 import Header from '../components/layout/Header'
 
 
-const Home = () => {
+const HomePage = () => {
   // page content
-  const pageTitle = 'Home'
-  const pageDescription = 'This is Home Page'
+  const pageTitle = 'HomePage'
+  const pageDescription = 'This is HomePage Page'
 
   return (
     <div>
@@ -14,4 +14,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

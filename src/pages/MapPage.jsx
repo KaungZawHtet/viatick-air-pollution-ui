@@ -5,7 +5,7 @@ import SaveButton from '../components/Map/SaveButton'
 import PdfButton from '../components/Map/PdfButton';
 
 import { useReactToPrint } from 'react-to-print';
-const Map = () => {
+const MapPage = () => {
 
 
     const componentRef = useRef();
@@ -40,4 +40,4 @@ const Map = () => {
     )
 }
 
-export default Map
+export default MapPage

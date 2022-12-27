@@ -5,7 +5,7 @@ const Footer = () => {
 	return (
 		<>
 			<footer className="text-center text-capitalize">
-				copyright react bootstrap starter &copy; {year}
+				copyright Kaung Zaw Htet &copy; {year}
 			</footer>
 		</>
 	);

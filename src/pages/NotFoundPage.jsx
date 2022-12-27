@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <Container fluid="md" className="mt-5">
       <Row>
@@ -12,7 +12,7 @@ const NotFound = () => {
             <div className="card-body">
               <h5 className="card-title">Custom Error Page</h5>
               <p className="card-text">
-                Edit Custom 404 error page <code>src/pages/NotFound.js</code>
+                Edit Custom 404 error page <code>src/pages/NotFoundPage.js</code>
               </p>
               <Link to="/">
                 <button className="btn btn-primary">Home Page</button>
@@ -25,4 +25,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

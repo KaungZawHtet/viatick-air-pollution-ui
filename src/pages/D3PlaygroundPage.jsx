@@ -4,7 +4,7 @@ import Delaunator from 'delaunator';
 import randomColor from "randomcolor";
 
 
-const D3Playground = () => {
+const D3PlaygroundPage = () => {
 
     const pts = [
         { x: 1, y: 43 },
@@ -64,4 +64,4 @@ const D3Playground = () => {
     )
 }
 
-export default D3Playground
+export default D3PlaygroundPage
