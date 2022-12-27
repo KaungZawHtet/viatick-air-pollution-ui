@@ -1,14 +1,15 @@
 import Delaunator from 'delaunator';
 import randomColor from "randomcolor";
-import {   Polygon } from 'react-leaflet';
+import { Polygon } from 'react-leaflet';
 let sensors = [
 
     {
         "sensorId": "sensorA",
         "latitude": 52.230425,
         "longitude": 21.010768,
+        "pm2.5": getPM25()
     },
-  {
+    {
         "sensorId": "sensorB",
         "latitude": 52.230517,
         "longitude": 21.011353,
@@ -28,7 +29,7 @@ let sensors = [
         "latitude": 52.230171,
         "longitude": 21.01205,
     },
-  {
+    {
         "sensorId": "sensorF",
         "latitude": 52.230454,
         "longitude": 21.012704,
@@ -40,7 +41,7 @@ let sensors = [
     },
     {
         "sensorId": "sensorF",
-        "latitude":52.229902,
+        "latitude": 52.229902,
         "longitude": 21.011556,
     },
     {
@@ -81,8 +82,7 @@ const pts = [
     { x: 65, y: 1 },
 ]
 
-function MakePoint()
-{
+function MakePoint() {
     let points = sensors.map(item => {
 
         let point = {
@@ -93,37 +93,50 @@ function MakePoint()
 
     });
 
-    console.log(pts);
+    //console.log(pts);
 
-    console.log(points);
+    //console.log(points);
 
     return points;
 
 }
 
-function MakeTrianglePoints()
-{
+function MakeTrianglePoints() {
     const xyPoints = MakePoint();
 
-    const delaunay = Delaunator.from(xyPoints.map((p) => [p.x, p.y]));
+    //const delaunay = Delaunator.from(xyPoints.map((p) => [p.x, p.y]));
+    const delaunay = Delaunator.from(sensors.map((sensor) => [sensor.longitude, sensor.latitude]));
     const triangleIndices = delaunay.triangles;
     const triangleCoords = [];
+
     for (let i = 0; i < triangleIndices.length; i += 3) {
+
+        const sensor1 = sensors[triangleIndices[i]]; //{ x: 1, y: 43 },
+        const sensor2 = sensors[triangleIndices[i + 1]];
+        const sensor3 = sensors[triangleIndices[i + 2]];
+
         triangleCoords.push([
-            xyPoints[triangleIndices[i]],
-            xyPoints[triangleIndices[i + 1]],
-            xyPoints[triangleIndices[i + 2]],
+            { x: sensor1.latitude, y: sensor1.longitude },
+            { x: sensor2.latitude, y: sensor2.longitude },
+            { x: sensor3.latitude, y: sensor3.longitude },
         ]);
     }
 
-    console.log(triangleCoords);
+    /* triangleCoords.push([
+        xyPoints[triangleIndices[i]],
+        xyPoints[triangleIndices[i + 1]],
+        xyPoints[triangleIndices[i + 2]],
+    ]); */
 
     return triangleCoords;
-
 }
 
-const MakeTriangles = () =>
-{
+//console.log(triangleCoords);
+
+
+
+
+const MakeTriangles = () => {
     let triangleCoords = MakeTrianglePoints();
 
     const polygonPoints = triangleCoords.map(([a, b, c]) => (
@@ -139,13 +152,13 @@ const MakeTriangles = () =>
         <>
 
             {
-                polygonPoints.map(item => (
-                    <Polygon pathOptions={{ color: randomColor() }
+                polygonPoints.map((item,index) => (
+                    <Polygon key={index} pathOptions={{ color: randomColor() }
                     } positions={item} />
 
                 ))
 
-             }
+            }
 
 
 
@@ -154,6 +167,38 @@ const MakeTriangles = () =>
 
 
 }
+
+function getColor(item) {
+
+    /*
+        [
+            [a.x, a.y],
+            [b.x, b.y],
+            [c.x, c.y]
+        ]
+
+    */
+
+}
+
+function getPM25() {
+
+    console.log("This is 32")
+
+    return 32;
+
+    /*
+        [
+            [a.x, a.y],
+            [b.x, b.y],
+            [c.x, c.y]
+        ]
+
+    */
+
+}
+
+
 
 
 

@@ -32,10 +32,7 @@ const points = [
 
 const MyMarkers = ({ data }) => {
     return points.map(({ lat, lng, title }, index) => (
-        <Marker
-            key={index}
-            position={{ lat, lng }}
-        >
+        <Marker key={index} position={{ lat, lng }}>
             <Popup>{title}</Popup>
         </Marker>
     ));

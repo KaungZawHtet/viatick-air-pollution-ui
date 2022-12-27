@@ -1,7 +1,7 @@
 
 
 import { MapContainer, TileLayer, Marker, Popup,Polygon } from 'react-leaflet';
-import MyMarkers from './MyMarkers';
+//import MyMarkers from './MyMarkers';
 import CoordinateDisplay from './CoordinateDisplay';
 import MakeTriangles from './Voronoi';
 const tileLayer = {
