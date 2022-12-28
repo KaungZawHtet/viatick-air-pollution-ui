@@ -24,7 +24,7 @@ const onSave = () => {
             "sensorId": item.sensorId,
             "latitude": item.latitude,
             "longitude": item.longitude,
-          "pm2P5": 32.32,
+          "pm2P5": item.pm2P5,
           "timestamp": timestamp
 
         };

@@ -5,13 +5,13 @@
 For a ReactJS project, there is not much left to consider before setting up. Here are 2 simple steps.
 
 1. Set up the server side first
-2. After that, simply run `num install` and after that, run `npm run start`
+2. After that, simply run `num install` and after that, run `npm run start` at the root of UI project root.
 
 ## Project Exploration
 
 1. The UI is built on a minimal layout compatible with leaflet.
 
-2. There are 4 pages in the UI and all the requirments are built on the Map Page. The rest (Records Page, D3 Playground Page and About Page) are for debugging purposes.
+2. There are 4 pages in the UI and all the requirements are built on the Map Page. The rest (Records Page, D3 Playground Page and About Page) are for debugging purposes.
 
 3.According the requirements, in summery, major Functions in the Map Page are voronoi diagram rendering with triangles (by using data from sensors), Map Display with Leaflet, Triangles Coloring by PM 2.5 Data, Saving data into Log Server and export the Map.
 
@@ -19,13 +19,7 @@ For a ReactJS project, there is not much left to consider before setting up. Her
 
 4. The requirement does not say to use real PM 2.5 data from open air quality APIs. So I use a mocking API to get the data.
 
-
-
-
-
-
-
-
+5. If PM 2.5 Data is 13-55, it's red. In case of  55-70, it's orange. In case of below 13, it's green and good air.
 
 ## Notable Modules
 
