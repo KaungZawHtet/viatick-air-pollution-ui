@@ -55,7 +55,7 @@ const RecordsPage = () => {
         await fetch('http://localhost:8080/api/pmlogs', {
             method: "DELETE"
         })
-        console.log("delete");
+        console.log("PM data all deleted");
 
         setPmlogs([]);
     };

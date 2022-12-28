@@ -35,11 +35,15 @@ const onSave = () => {
                 'Content-Type': 'application/json'
             },
               body: JSON.stringify(log)
+          }).then((req) => {
+            console.log("Receive HTTP Status : " + req.status);
         });
 
     });
 
-    alert("Successfully saved all logs into server");
+  alert("Check in the Browser Console for status. If successful, will receive HTTP Status 200. If error, Please check if your server is on");
+
+
 
 
 };
